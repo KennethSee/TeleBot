@@ -14,8 +14,8 @@ def get_ranking(db: DB, chat_id):
         return None
     scores = []
     for member in members:
+        member_name = db.get_user_name(member)
         if member_name is not None:
-            member_name = db.get_user_name(member)
             member_score = db.get_social_credit_score(member)
             scores.append((member_name, member_score))
     scores.sort(key=lambda x: x[1], reverse=True)
