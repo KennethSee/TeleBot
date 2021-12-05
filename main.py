@@ -39,7 +39,13 @@ def social_credit_counter(message):
             add_score(db, username, name, 20)
         elif sticker.emoji == '😞':
             reduce_score(db, username, name, 20)
-        bot.reply_to(message, f'{name}, your social credit is now {db.get_social_credit_score(username)}')
+        # bot.reply_to(message, f'{name}, your social credit is now {db.get_social_credit_score(username)}')
+        
+@bot.message_handler(commands=['ranking'])
+def ranking(message):
+    chat_id = message.chat.id
+    rankings = get_ranking(db, chat_id)
+    bot.send_message(chat_id, rankings)
 
 @server.route('/' + API_KEY, methods=['POST'])
 def getMessage():
