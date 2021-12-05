@@ -20,7 +20,7 @@ def get_ranking(db: DB, chat_id):
             scores.append((member_name, member_score))
     scores.sort(key=lambda x: x[1], reverse=True)
     # generate formated output rank
-    output = 'Leaderboard:\n'
+    output = ':\n'
     for name, score in scores:
         output += f'{name}: {score}\n'
 
