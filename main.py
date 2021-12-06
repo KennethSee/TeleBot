@@ -2,7 +2,7 @@ import os
 import telebot
 from flask import Flask, request
 
-from storage import add_score, reduce_score
+from storage import add_score, reduce_score, get_ranking
 from db import DB
 
 
@@ -64,3 +64,6 @@ def webhook():
 
 if __name__ == "__main__":
     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+
+# bot.remove_webhook()
+# bot.infinity_polling()
