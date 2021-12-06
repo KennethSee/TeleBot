@@ -47,6 +47,16 @@ def ranking(message):
     rankings = get_ranking(db, chat_id)
     bot.send_message(chat_id, rankings)
 
+# @bot.message_handler(commands=['urk'])
+# def urk(message):
+#     reply = message.reply_to_message
+#     if reply is not None:
+#         bot.send_message(message.chat.id, reply.)
+
+@bot.message_handler(func=lambda m: True)
+def test_channel(message):
+    print(message)
+
 @server.route('/' + API_KEY, methods=['POST'])
 def getMessage():
     json_string = request.get_data().decode('utf-8')
