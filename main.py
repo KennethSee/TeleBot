@@ -51,9 +51,11 @@ def ranking(message):
 # def urk(message):
 #     reply = message.reply_to_message
 #     if reply is not None:
-#         bot.send_message(message.chat.id, reply.)
+#         reply_user = reply.from_user.first_name
+#         bot.send_message(message.chat.id, f'{reply_user} needs a good hard URk!')
+#     bot.send_message(message.chat.id,)
 
-@bot.message_handler(func=lambda m: True)
+@bot.message_handler(func=lambda m: True, content_types=['text', 'sticker'])
 def test_channel(message):
     print(message)
 
