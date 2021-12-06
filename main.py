@@ -21,10 +21,10 @@ def greet(message):
 def myscore(message):
     username = message.from_user.username
     score = db.get_social_credit_score(username)
-    reply = f'{message.from_user.first_name}, you have a credit score of {score}. '
-    if score < 0:
+    reply = f'{message.from_user.first_name}, you have a social credit of {score}. '
+    if int(score) < 0:
         reply += 'Dishonorable.'
-    elif score > 1000:
+    elif int(score) > 1000:
         reply += 'The CCP thanks you for being a righteous citizen.'
     bot.send_message(message.chat.id, reply)
 
@@ -35,10 +35,16 @@ def social_credit_counter(message):
     if sticker.set_name == 'PoohSocialCredit' and reply is not None:
         username = reply.from_user.username
         name = reply.from_user.first_name
-        if sticker.emoji == '😄':
-            add_score(db, username, name, 20)
-        elif sticker.emoji == '😞':
+
+        # check if replying to self
+        if message.from_user.id == reply.from_user.id:
+            bot.send_message(message.chat.id, 'Influencing your own social score is not socially desirable behaviour. -20 points.')
             reduce_score(db, username, name, 20)
+        else:
+            if sticker.emoji == '😄':
+                add_score(db, username, name, 20)
+            elif sticker.emoji == '😞':
+                reduce_score(db, username, name, 20)
         # bot.reply_to(message, f'{name}, your social credit is now {db.get_social_credit_score(username)}')
         
 @bot.message_handler(commands=['ranking'])
@@ -47,17 +53,17 @@ def ranking(message):
     rankings = get_ranking(db, chat_id)
     bot.send_message(chat_id, rankings)
 
-# @bot.message_handler(commands=['urk'])
-# def urk(message):
-#     reply = message.reply_to_message
-#     if reply is not None:
-#         reply_user = reply.from_user.first_name
-#         bot.send_message(message.chat.id, f'{reply_user} needs a good hard URk!')
-#     bot.send_message(message.chat.id,)
+@bot.message_handler(commands=['urk'])
+def urk(message):
+    reply = message.reply_to_message
+    if reply is not None:
+        reply_user = reply.from_user.first_name
+        bot.send_message(message.chat.id, f'{reply_user} needs a good hard URk!')
+    bot.send_sticker(message.chat.id, 'CAACAgEAAxkBAAEDbDZhrh1hLCZQXI6vMa38t9HIjVcx5gACGgADPLOxB_ZVKFF6mQdnIgQ')
 
-@bot.message_handler(func=lambda m: True, content_types=['text', 'sticker'])
-def test_channel(message):
-    print(message)
+# @bot.message_handler(func=lambda m: True, content_types=['text', 'sticker'])
+# def test_channel(message):
+#     print(message)
 
 @server.route('/' + API_KEY, methods=['POST'])
 def getMessage():
