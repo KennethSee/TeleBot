@@ -57,7 +57,7 @@ class DB:
         ref = self.chats.document(str(chat_id))
         doc = ref.get()
         if doc.exists:
-            doc.update({'members': members})
+            doc.update({'members': json.dumps(members)})
         else:
             self.chats.document(str(chat_id)).create({
                 'name': chat_name,
