@@ -1,3 +1,4 @@
+import json
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -60,5 +61,5 @@ class DB:
         else:
             self.chats.document(str(chat_id)).create({
                 'name': chat_name,
-                'members': members
+                'members': json.dumps(members)
             })
