@@ -2,7 +2,7 @@ import os
 import telebot
 from flask import Flask, request
 
-from storage import add_score, reduce_score, get_ranking
+from utils import add_score, reduce_score, get_ranking, add_to_group
 from db import DB
 
 
@@ -19,8 +19,8 @@ def greet(message):
 
 @bot.message_handler(commands=['myscore'])
 def myscore(message):
-    username = message.from_user.username
-    score = db.get_social_credit_score(username)
+    userid = message.from_user.id
+    score = db.get_social_credit_score(userid)
     reply = f'{message.from_user.first_name}, you have a social credit of {score}. '
     if int(score) < 0:
         reply += 'Dishonorable.'
@@ -33,18 +33,23 @@ def social_credit_counter(message):
     sticker = message.sticker
     reply = message.reply_to_message
     if sticker.set_name == 'PoohSocialCredit' and reply is not None:
-        username = reply.from_user.username
+        userid = reply.from_user.id
         name = reply.from_user.first_name
+        chat_id = message.chat.id
+        chat_name = message.chat.title
+
+        # update chat members
+        add_to_group(chat_id, chat_name, userid)
 
         # check if replying to self
         if message.from_user.id == reply.from_user.id:
             bot.send_message(message.chat.id, 'Influencing your own social score is not socially desirable behaviour. -20 points.')
-            reduce_score(db, username, name, 20)
+            reduce_score(db, userid, name, 20)
         else:
             if sticker.emoji == '😄':
-                add_score(db, username, name, 20)
+                add_score(db, userid, name, 20)
             elif sticker.emoji == '😞':
-                reduce_score(db, username, name, 20)
+                reduce_score(db, userid, name, 20)
         # bot.reply_to(message, f'{name}, your social credit is now {db.get_social_credit_score(username)}')
         
 @bot.message_handler(commands=['ranking'])
