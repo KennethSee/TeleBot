@@ -73,6 +73,10 @@ def revolution(message):
         bot.send_message(message.chat.id, 'Long live the revolution!')
     elif 'sorry i can\'t' in text or 'sorry i cannot' in text or 'can\'t make it' in text:
         bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEDbtFhr30W6ds72yYsLX9EMixUsBXKhgAC8AIAAq1iKVcctN3YMdC8VSME')
+    elif 'good morning' in text:
+        bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEDbtNhr37xYemxxip7fzivN1k3WAP6mAACfQYAArffewq76K5rz_X8qSME')
+    elif ' pm ' in text:
+        bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEDbthhr385k2iDSbo6XI_oGaPoThcuHwACewYAArffewrF24jnUr4miyME')
 
 # @bot.message_handler(func=lambda m: True, content_types=['text', 'sticker'])
 # def test_channel(message):
