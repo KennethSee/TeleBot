@@ -68,8 +68,11 @@ def urk(message):
 
 @bot.message_handler(func=lambda m: True, content_types=['text'])
 def revolution(message):
-    if 'revolution' in message.text.lower():
+    text = message.text.lower()
+    if 'revolution' in text:
         bot.send_message(message.chat.id, 'Long live the revolution!')
+    elif 'sorry i can\'t' in text or 'sorry i cannot' in text or 'can\'t make it' in text:
+        bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEDbtFhr30W6ds72yYsLX9EMixUsBXKhgAC8AIAAq1iKVcctN3YMdC8VSME')
 
 # @bot.message_handler(func=lambda m: True, content_types=['text', 'sticker'])
 # def test_channel(message):
