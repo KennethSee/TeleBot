@@ -68,7 +68,7 @@ def urk(message):
 
 @bot.message_handler(func=lambda m: True, content_types=['text'])
 def revolution(message):
-    if 'revolution' in message.lower():
+    if 'revolution' in message.text.lower():
         bot.send_message(message.chat.id, 'Long live the revolution!')
 
 # @bot.message_handler(func=lambda m: True, content_types=['text', 'sticker'])
