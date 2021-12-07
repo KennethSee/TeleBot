@@ -66,6 +66,11 @@ def urk(message):
         bot.send_message(message.chat.id, f'{reply_user} needs a good hard URk!')
     bot.send_sticker(message.chat.id, 'CAACAgEAAxkBAAEDbDZhrh1hLCZQXI6vMa38t9HIjVcx5gACGgADPLOxB_ZVKFF6mQdnIgQ')
 
+@bot.message_handler(func=lambda m: True, content_types=['text'])
+def revolution(message):
+    if 'revolution' in message.lower():
+        bot.send_message(message.chat.id, 'Long live the revolution!')
+
 # @bot.message_handler(func=lambda m: True, content_types=['text', 'sticker'])
 # def test_channel(message):
 #     print(message)
