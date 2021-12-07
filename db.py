@@ -52,6 +52,7 @@ class DB:
             return []
 
     def update_chat_members(self, chat_id, chat_name, members: list):
+        print(members)
         ref = self.chats.document(str(chat_id))
         doc = ref.get()
         if doc.exists:
