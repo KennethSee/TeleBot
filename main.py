@@ -38,11 +38,6 @@ def social_credit_counter(message):
         chat_id = message.chat.id
         chat_name = message.chat.title
 
-        # print(userid)
-        # print(name)
-        # print(chat_id)
-        # print(chat_name)
-
         # update chat members
         add_to_group(db, chat_id, chat_name, userid)
 

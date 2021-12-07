@@ -30,4 +30,4 @@ def add_to_group(db, chat_id, chat_name, userid):
     members = db.get_chat_members(chat_id)
     if userid not in members:
         members.append(userid)
-        db.update_chat_members(chat_id, chat_name, userid)
+        db.update_chat_members(chat_id, chat_name, members)
