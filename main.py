@@ -67,7 +67,7 @@ def urk(message):
     bot.send_sticker(message.chat.id, 'CAACAgEAAxkBAAEDbDZhrh1hLCZQXI6vMa38t9HIjVcx5gACGgADPLOxB_ZVKFF6mQdnIgQ')
 
 @bot.message_handler(func=lambda m: True, content_types=['text'])
-def revolution(message):
+def texthandler(message):
     text = message.text.lower()
     if 'revolution' in text:
         bot.send_message(message.chat.id, 'Long live the revolution!')
@@ -77,13 +77,10 @@ def revolution(message):
         bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEDbtNhr37xYemxxip7fzivN1k3WAP6mAACfQYAArffewq76K5rz_X8qSME')
     elif ' pm ' in text:
         bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEDbthhr385k2iDSbo6XI_oGaPoThcuHwACewYAArffewrF24jnUr4miyME')
-        
-@bot.message_handler(func=lambda m: True, content_types=['text'])
-def urkday(message):
-    text = message.text.lower()
-    if 'urkday' in text:
+    # urkday response
+    elif 'urkday' in text:
         bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEFu55jEMfgFvhJvZhbZ9fcn96sNiJ2nwACAgQAAnkyMVcQJeUrIxT5GCkE')
-        bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEFu6JjEMsjq7tD5IE4luRpuZjz7RIU8gACHwADTn4wGDE22lRtk0hQKQQ')
+        bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEFu6JjEMsjq7tD5IE4luRpuZjz7RIU8gACHwADTn4wGDE22lRtk0hQKQQ') 
 
 # @bot.message_handler(func=lambda m: True, content_types=['text', 'sticker'])
 # def test_channel(message):
