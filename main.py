@@ -83,7 +83,7 @@ def urkday(message):
     text = message.text.lower()
     if 'urkday' in text:
         bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEFu55jEMfgFvhJvZhbZ9fcn96sNiJ2nwACAgQAAnkyMVcQJeUrIxT5GCkE')
-        bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEFu6BjEMhSAcmytF8XhC-sz0CBoCElTgACHwADTn4wGDE22lRtk0hQKQQ')
+        bot.send_sticker(message.chat.id, 'CAACAgUAAxkBAAEFu6JjEMsjq7tD5IE4luRpuZjz7RIU8gACHwADTn4wGDE22lRtk0hQKQQ')
 
 # @bot.message_handler(func=lambda m: True, content_types=['text', 'sticker'])
 # def test_channel(message):
